@@ -1,0 +1,9 @@
+E:\Appliction\ArmControl\ArmControl\bin\Debug\ArmControl.exe
+E:\Appliction\ArmControl\ArmControl\bin\Debug\ArmControl.pdb
+E:\Appliction\ArmControl\ArmControl\obj\Debug\ArmControl.csprojAssemblyReference.cache
+E:\Appliction\ArmControl\ArmControl\obj\Debug\ArmControl.Debugs.resources
+E:\Appliction\ArmControl\ArmControl\obj\Debug\ArmControl.Properties.Resources.resources
+E:\Appliction\ArmControl\ArmControl\obj\Debug\ArmControl.csproj.GenerateResource.cache
+E:\Appliction\ArmControl\ArmControl\obj\Debug\ArmControl.csproj.CoreCompileInputs.cache
+E:\Appliction\ArmControl\ArmControl\obj\Debug\ArmControl.exe
+E:\Appliction\ArmControl\ArmControl\obj\Debug\ArmControl.pdb
