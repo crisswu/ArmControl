@@ -125,7 +125,57 @@ namespace ArmControl
         /// <param name="data"></param>
         public void ExecuteResponse(string data)
         {
-            txtMessage.Text += data + "\n";
+            try
+            {
+                ResaultModel rm = JsonDeserialize(data);
+                if (rm.Code == "200")
+                {
+                    txtMessage.Text += "执行完成!\n";
+                }
+                else if (rm.Code == "100")//初始化
+                {
+                    for (int i = 0; i < rm.Ids.Length; i++)
+                    {
+                        if (rm.Ids[i] == 1)
+                            txtDJ1.Value = rm.Vals[i];
+                        if (rm.Ids[i] == 2)
+                            txtDJ2.Value = rm.Vals[i];
+                        if (rm.Ids[i] == 3)
+                            txtDJ3.Value = rm.Vals[i];
+                        if (rm.Ids[i] == 4)
+                            txtDJ4.Value = rm.Vals[i];
+                        if (rm.Ids[i] == 5)
+                            txtDJ5.Value = rm.Vals[i];
+                        if (rm.Ids[i] == 6)
+                            txtDJ6.Value = rm.Vals[i];
+                    }
+                }
+                else if (rm.Code == "201")// 自定义内容
+                {
+                    txtMessage.Text += rm.Msg + "\n";
+                }
+                else if (rm.Code == "500")// python错误信息
+                {
+                    txtMessage.Text += rm.Msg + "\n";
+                }
+                else
+                {
+                    txtMessage.Text += "返回结果出现异常\n";
+                }
+            }
+            catch (Exception ep)
+            {
+                txtMessage.Text += ep.Message + "\n";
+            }
+            
+        }
+        //JSON反序列化
+        public static ResaultModel JsonDeserialize(string jsonString)
+        {
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ResaultModel));
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
+            ResaultModel obj = (ResaultModel)ser.ReadObject(ms);
+            return obj;
         }
         /// <summary>
         /// 批量操作
@@ -172,6 +222,22 @@ namespace ArmControl
             c.ModelType = cboModel.SelectedIndex;//型号
             c.MsgType = 1;//消息类型
             c.MethodType = cboMethod.SelectedIndex;
+
+            string data = TcpManager.Client(txtIP.Text, 12345, getJson(c));
+            ExecuteResponse(data);
+        }
+        /// <summary>
+        /// PMW端口测试
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            Capm c = new Capm();
+            c.ModelType = cboModel.SelectedIndex;//型号
+            c.MsgType = 2;//消息类型
+            c.Ids = new int[] { Convert.ToInt32(txtPMWid.Value) };
+            c.Vals = new int[] { Convert.ToInt32(txtPMWVal.Value) };
 
             string data = TcpManager.Client(txtIP.Text, 12345, getJson(c));
             ExecuteResponse(data);

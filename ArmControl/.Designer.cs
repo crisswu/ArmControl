@@ -67,6 +67,11 @@
             this.col6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExecute = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnDel = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtPMWVal = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtPMWid = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnSend = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtDJ1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDJ2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDJ3)).BeginInit();
@@ -75,6 +80,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDJ6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPMWVal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPMWid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -331,7 +338,7 @@
             // 
             // txtIP
             // 
-            this.txtIP.Location = new System.Drawing.Point(420, 19);
+            this.txtIP.Location = new System.Drawing.Point(391, 17);
             this.txtIP.Margin = new System.Windows.Forms.Padding(4);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(169, 25);
@@ -342,19 +349,19 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(358, 23);
+            this.label7.Location = new System.Drawing.Point(318, 21);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 15);
+            this.label7.Size = new System.Drawing.Size(68, 15);
             this.label7.TabIndex = 0;
-            this.label7.Text = "IP地址";
+            this.label7.Text = "IP地址：";
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(351, 127);
+            this.txtMessage.Location = new System.Drawing.Point(673, -1);
             this.txtMessage.Margin = new System.Windows.Forms.Padding(4);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(480, 136);
+            this.txtMessage.Size = new System.Drawing.Size(322, 306);
             this.txtMessage.TabIndex = 4;
             this.txtMessage.TabStop = false;
             this.txtMessage.Text = "";
@@ -362,12 +369,12 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(348, 84);
+            this.label8.Location = new System.Drawing.Point(304, 82);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 15);
+            this.label8.Size = new System.Drawing.Size(82, 15);
             this.label8.TabIndex = 0;
-            this.label8.Text = "执行函数";
+            this.label8.Text = "执行函数：";
             // 
             // cboMethod
             // 
@@ -375,7 +382,7 @@
             this.cboMethod.FormattingEnabled = true;
             this.cboMethod.Items.AddRange(new object[] {
             "初始化"});
-            this.cboMethod.Location = new System.Drawing.Point(420, 81);
+            this.cboMethod.Location = new System.Drawing.Point(391, 79);
             this.cboMethod.Name = "cboMethod";
             this.cboMethod.Size = new System.Drawing.Size(169, 23);
             this.cboMethod.TabIndex = 5;
@@ -383,7 +390,7 @@
             // 
             // btnMethod
             // 
-            this.btnMethod.Location = new System.Drawing.Point(599, 79);
+            this.btnMethod.Location = new System.Drawing.Point(565, 77);
             this.btnMethod.Margin = new System.Windows.Forms.Padding(4);
             this.btnMethod.Name = "btnMethod";
             this.btnMethod.Size = new System.Drawing.Size(100, 29);
@@ -442,12 +449,12 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(374, 55);
+            this.label9.Location = new System.Drawing.Point(334, 53);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 15);
+            this.label9.Size = new System.Drawing.Size(52, 15);
             this.label9.TabIndex = 0;
-            this.label9.Text = "型号";
+            this.label9.Text = "型号：";
             // 
             // cboModel
             // 
@@ -456,7 +463,7 @@
             this.cboModel.Items.AddRange(new object[] {
             "V8",
             "学士"});
-            this.cboModel.Location = new System.Drawing.Point(420, 51);
+            this.cboModel.Location = new System.Drawing.Point(391, 49);
             this.cboModel.Name = "cboModel";
             this.cboModel.Size = new System.Drawing.Size(169, 23);
             this.cboModel.TabIndex = 5;
@@ -525,11 +532,83 @@
             this.btnDel.Name = "btnDel";
             this.btnDel.Text = "删除";
             // 
+            // txtPMWVal
+            // 
+            this.txtPMWVal.Location = new System.Drawing.Point(391, 150);
+            this.txtPMWVal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPMWVal.Maximum = new decimal(new int[] {
+            270,
+            0,
+            0,
+            0});
+            this.txtPMWVal.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.txtPMWVal.Name = "txtPMWVal";
+            this.txtPMWVal.Size = new System.Drawing.Size(167, 25);
+            this.txtPMWVal.TabIndex = 8;
+            this.txtPMWVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(310, 125);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(76, 15);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "PMW端口：";
+            // 
+            // txtPMWid
+            // 
+            this.txtPMWid.Location = new System.Drawing.Point(391, 120);
+            this.txtPMWid.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPMWid.Maximum = new decimal(new int[] {
+            270,
+            0,
+            0,
+            0});
+            this.txtPMWid.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.txtPMWid.Name = "txtPMWid";
+            this.txtPMWid.Size = new System.Drawing.Size(167, 25);
+            this.txtPMWid.TabIndex = 8;
+            this.txtPMWid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(334, 153);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 15);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "数值：";
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(565, 147);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(100, 29);
+            this.btnSend.TabIndex = 2;
+            this.btnSend.TabStop = false;
+            this.btnSend.Text = "发送";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
             // Debugs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 580);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtPMWid);
+            this.Controls.Add(this.txtPMWVal);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cboModel);
@@ -548,6 +627,7 @@
             this.Controls.Add(this.txtDJ2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtDJ5);
+            this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnMethod);
             this.Controls.Add(this.btnDJ1);
             this.Controls.Add(this.txtDJ3);
@@ -571,6 +651,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDJ6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtPMWVal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPMWid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -617,6 +699,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col6;
         private System.Windows.Forms.DataGridViewButtonColumn btnExecute;
         private System.Windows.Forms.DataGridViewButtonColumn btnDel;
+        private System.Windows.Forms.NumericUpDown txtPMWVal;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown txtPMWid;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnSend;
     }
 }
 

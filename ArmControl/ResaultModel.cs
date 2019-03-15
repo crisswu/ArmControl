@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace ArmControl
 {
     [DataContract]
-    public class Capm
+    public class ResaultModel
     {
         /// <summary>
-        /// 型号  0 = V8 1=学士
+        /// 消息代码： 200 正常 100=初始化  500 = python错误  201=自定义内容
         /// </summary>
         [DataMember]
-        public int ModelType { get; set; }
+        public string Code { get; set; }
         /// <summary>
-        /// 消息类型  0=执行指定舵机角度  1=指定执行函数   2=PMW端口测试
+        ///  消息文本
         /// </summary>
         [DataMember]
-        public int MsgType { get; set; }
+        public string Msg { get; set; }
+
         /// <summary>
         ///  舵机ID
         /// </summary>
@@ -29,13 +30,5 @@ namespace ArmControl
         /// </summary>
         [DataMember]
         public int[] Vals { get; set; }
-
-        /// <summary>
-        /// 执行函数 
-        /// 0 = 初始化
-        /// </summary>
-        [DataMember]
-        public int MethodType { get; set; }
-
     }
 }
