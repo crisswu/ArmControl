@@ -58,6 +58,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.cboModel = new System.Windows.Forms.ComboBox();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.txtPMWVal = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtPMWid = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.btnExcuteDZ = new System.Windows.Forms.Button();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,11 +73,7 @@
             this.col6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExecute = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnDel = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.txtPMWVal = new System.Windows.Forms.NumericUpDown();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtPMWid = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnSend = new System.Windows.Forms.Button();
+            this.colSort = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtDJ1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDJ2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDJ3)).BeginInit();
@@ -361,7 +363,7 @@
             this.txtMessage.Location = new System.Drawing.Point(673, -1);
             this.txtMessage.Margin = new System.Windows.Forms.Padding(4);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(322, 306);
+            this.txtMessage.Size = new System.Drawing.Size(413, 306);
             this.txtMessage.TabIndex = 4;
             this.txtMessage.TabStop = false;
             this.txtMessage.Text = "";
@@ -405,7 +407,7 @@
             this.btnAdd.Location = new System.Drawing.Point(13, 268);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(269, 29);
+            this.btnAdd.Size = new System.Drawing.Size(123, 29);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "记录动作";
@@ -426,13 +428,14 @@
             this.col5,
             this.col6,
             this.btnExecute,
-            this.btnDel});
+            this.btnDel,
+            this.colSort});
             this.grd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grd.Location = new System.Drawing.Point(0, 0);
             this.grd.Name = "grd";
             this.grd.RowHeadersVisible = false;
             this.grd.RowTemplate.Height = 27;
-            this.grd.Size = new System.Drawing.Size(995, 278);
+            this.grd.Size = new System.Drawing.Size(1086, 278);
             this.grd.TabIndex = 6;
             this.grd.TabStop = false;
             this.grd.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grd_CellClick);
@@ -443,7 +446,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 302);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(995, 278);
+            this.panel1.Size = new System.Drawing.Size(1086, 278);
             this.panel1.TabIndex = 7;
             // 
             // label9
@@ -475,62 +478,6 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(269, 25);
             this.txtName.TabIndex = 7;
-            // 
-            // colName
-            // 
-            this.colName.DataPropertyName = "Name";
-            this.colName.HeaderText = "动作名称";
-            this.colName.Name = "colName";
-            // 
-            // col1
-            // 
-            this.col1.DataPropertyName = "col1";
-            this.col1.HeaderText = "1号位";
-            this.col1.Name = "col1";
-            // 
-            // col2
-            // 
-            this.col2.DataPropertyName = "col2";
-            this.col2.HeaderText = "2号位";
-            this.col2.Name = "col2";
-            // 
-            // col3
-            // 
-            this.col3.DataPropertyName = "col3";
-            this.col3.HeaderText = "3号位";
-            this.col3.Name = "col3";
-            // 
-            // col4
-            // 
-            this.col4.DataPropertyName = "col4";
-            this.col4.HeaderText = "4号位";
-            this.col4.Name = "col4";
-            // 
-            // col5
-            // 
-            this.col5.DataPropertyName = "col5";
-            this.col5.HeaderText = "5号位";
-            this.col5.Name = "col5";
-            // 
-            // col6
-            // 
-            this.col6.DataPropertyName = "col6";
-            this.col6.HeaderText = "爪位";
-            this.col6.Name = "col6";
-            // 
-            // btnExecute
-            // 
-            this.btnExecute.DataPropertyName = "btnExecute";
-            this.btnExecute.HeaderText = "执行";
-            this.btnExecute.Name = "btnExecute";
-            this.btnExecute.Text = "执行";
-            // 
-            // btnDel
-            // 
-            this.btnDel.DataPropertyName = "btnDel";
-            this.btnDel.HeaderText = "删除";
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Text = "删除";
             // 
             // txtPMWVal
             // 
@@ -600,11 +547,86 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
+            // btnExcuteDZ
+            // 
+            this.btnExcuteDZ.Location = new System.Drawing.Point(144, 268);
+            this.btnExcuteDZ.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExcuteDZ.Name = "btnExcuteDZ";
+            this.btnExcuteDZ.Size = new System.Drawing.Size(138, 29);
+            this.btnExcuteDZ.TabIndex = 2;
+            this.btnExcuteDZ.TabStop = false;
+            this.btnExcuteDZ.Text = "执行动作";
+            this.btnExcuteDZ.UseVisualStyleBackColor = true;
+            this.btnExcuteDZ.Click += new System.EventHandler(this.btnExcuteDZ_Click);
+            // 
+            // colName
+            // 
+            this.colName.DataPropertyName = "Name";
+            this.colName.HeaderText = "动作名称";
+            this.colName.Name = "colName";
+            // 
+            // col1
+            // 
+            this.col1.DataPropertyName = "col1";
+            this.col1.HeaderText = "1号位";
+            this.col1.Name = "col1";
+            // 
+            // col2
+            // 
+            this.col2.DataPropertyName = "col2";
+            this.col2.HeaderText = "2号位";
+            this.col2.Name = "col2";
+            // 
+            // col3
+            // 
+            this.col3.DataPropertyName = "col3";
+            this.col3.HeaderText = "3号位";
+            this.col3.Name = "col3";
+            // 
+            // col4
+            // 
+            this.col4.DataPropertyName = "col4";
+            this.col4.HeaderText = "4号位";
+            this.col4.Name = "col4";
+            // 
+            // col5
+            // 
+            this.col5.DataPropertyName = "col5";
+            this.col5.HeaderText = "5号位";
+            this.col5.Name = "col5";
+            // 
+            // col6
+            // 
+            this.col6.DataPropertyName = "col6";
+            this.col6.HeaderText = "爪位";
+            this.col6.Name = "col6";
+            // 
+            // btnExecute
+            // 
+            this.btnExecute.DataPropertyName = "btnExecute";
+            this.btnExecute.HeaderText = "执行";
+            this.btnExecute.Name = "btnExecute";
+            this.btnExecute.Text = "执行";
+            // 
+            // btnDel
+            // 
+            this.btnDel.DataPropertyName = "btnDel";
+            this.btnDel.HeaderText = "删除";
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Text = "删除";
+            // 
+            // colSort
+            // 
+            this.colSort.DataPropertyName = "colSort";
+            this.colSort.HeaderText = "排序";
+            this.colSort.Name = "colSort";
+            this.colSort.Text = "↑";
+            // 
             // Debugs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 580);
+            this.ClientSize = new System.Drawing.Size(1086, 580);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtPMWid);
@@ -615,6 +637,7 @@
             this.Controls.Add(this.cboMethod);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.txtIP);
+            this.Controls.Add(this.btnExcuteDZ);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDJ6);
             this.Controls.Add(this.txtDJ6);
@@ -690,6 +713,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cboModel;
         private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.NumericUpDown txtPMWVal;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown txtPMWid;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Button btnExcuteDZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn col1;
         private System.Windows.Forms.DataGridViewTextBoxColumn col2;
@@ -699,11 +728,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col6;
         private System.Windows.Forms.DataGridViewButtonColumn btnExecute;
         private System.Windows.Forms.DataGridViewButtonColumn btnDel;
-        private System.Windows.Forms.NumericUpDown txtPMWVal;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown txtPMWid;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.DataGridViewButtonColumn colSort;
     }
 }
 

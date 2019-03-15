@@ -36,7 +36,8 @@ namespace ArmControl
             dt.Columns.Add("col6", Type.GetType("System.Int32"));
             dt.Columns.Add("btnExecute", Type.GetType("System.String"));
             dt.Columns.Add("btnDel", Type.GetType("System.String"));
-
+            dt.Columns.Add("colSort", Type.GetType("System.String"));
+            
         }
 
         /// <summary>
@@ -114,6 +115,7 @@ namespace ArmControl
             dr["col6"] = txtDJ6.Value;
             dr["btnExecute"] = "执行";
             dr["btnDel"] = "删除";
+            dr["colSort"] = "↑";
             dt.Rows.Add(dr);
             grd.DataSource = dt;
             txtName.Text = "";
@@ -185,14 +187,14 @@ namespace ArmControl
         /// <param name="e"></param>
         private void grd_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 7)
             {
                 int i = e.RowIndex;
                 //执行
                 Capm c = new Capm();
                 c.ModelType = cboModel.SelectedIndex;//型号
                 c.MsgType = 0;//消息类型
-                c.Ids = new int[] { 1,2,3,4,5,6};
+                c.Ids = new int[] { 1, 2, 3, 4, 5, 6 };
 
                 c.Vals = new int[] { Convert.ToInt32(dt.Rows[i]["col1"]),
                                      Convert.ToInt32(dt.Rows[i]["col2"]),
@@ -204,11 +206,26 @@ namespace ArmControl
                 string data = TcpManager.Client(txtIP.Text, 12345, getJson(c));
                 ExecuteResponse(data);
             }
-            else if (e.ColumnIndex == 7)
+            else if (e.ColumnIndex == 8)
             {
                 //删除
                 dt.Rows.RemoveAt(e.RowIndex);
                 grd.DataSource = dt;
+            }
+            else if (e.ColumnIndex == 9)
+            {
+                if (e.RowIndex != 0)
+                {
+                    DataRow dr = dt.NewRow();
+                    for (int i = 0; i < dt.Columns.Count; i++)
+                    {
+                        dr[dt.Columns[i].Caption] = dt.Rows[e.RowIndex][dt.Columns[i].Caption];
+                    }
+                    dt.Rows.RemoveAt(e.RowIndex);
+                    dt.Rows.InsertAt(dr, e.RowIndex - 1);
+                    grd.DataSource = dt;
+                }
+                
             }
         }
 
@@ -242,6 +259,16 @@ namespace ArmControl
 
             string data = TcpManager.Client(txtIP.Text, 12345, getJson(c));
             ExecuteResponse(data);
+        }
+
+        /// <summary>
+        /// 执行系列动作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExcuteDZ_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
