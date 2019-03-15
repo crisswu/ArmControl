@@ -10,7 +10,11 @@ namespace ArmControl
     public class Capm
     {
         /// <summary>
-        /// 消息类型  0=修改指定舵机ID角度  1=指定执行函数 
+        /// 型号  0 = V8 1=学士
+        /// </summary>
+        public int ModelType { get; set; }
+        /// <summary>
+        /// 消息类型  0=执行指定舵机角度  1=指定执行函数 
         /// </summary>
         [DataMember]
         public int MsgType { get; set; }
@@ -24,6 +28,13 @@ namespace ArmControl
         /// </summary>
         [DataMember]
         public int[] Vals { get; set; }
+
+        /// <summary>
+        /// 执行函数 
+        /// 0 = 初始化
+        /// </summary>
+        [DataMember]
+        public int MethodType { get; set; }
 
     }
 }
