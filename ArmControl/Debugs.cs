@@ -127,6 +127,7 @@ namespace ArmControl
         {
             try
             {
+                data = data.Replace("\0", "");
                 ResaultModel rm = JsonDeserialize(data);
                 if (rm.Code == "200")
                 {

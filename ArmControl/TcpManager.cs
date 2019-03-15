@@ -30,17 +30,14 @@ namespace ArmControl
                 Console.WriteLine("{0:HH:mm:ss}->发送数据(to {1})：{2}:{3}", DateTime.Now, ip, port, message);
 
                 //2.接收状态,长度<1024字节
-                byte[] bytes = new Byte[1024];
+                byte[] bytes = new Byte[10240];
                 string data = string.Empty;
                 int length = stream.Read(bytes, 0, bytes.Length);
                 if (length > 0)
                 {
-                    byte[] newA = bytes.Skip(0).Take(bytes[7] + 12).ToArray();//获取返回协议
-                                                                              // Console.WriteLine(BitConverter.ToString(newA).Replace("-", ""));
-
+                    byte[] newA = bytes.ToArray();//获取返回协议
+                     // Console.WriteLine(BitConverter.ToString(newA).Replace("-", ""));
                     data = System.Text.Encoding.Default.GetString(newA); //HexManage.byteToHexStr(newA);//把返回的十六进制数组转换为字符串
-                    Console.WriteLine("{0:HH:mm:ss}->接收数据(from {1}:{2})：{3}", DateTime.Now, ipendpoint.Address, ipendpoint.Port, data);
-                   
                 }
 
                 //3.关闭对象

@@ -15,7 +15,7 @@ namespace ArmControl
         [DataMember]
         public int ModelType { get; set; }
         /// <summary>
-        /// 消息类型  0=执行指定舵机角度  1=指定执行函数   2=PMW端口测试
+        /// 消息类型  0=执行指定舵机角度  1=指定执行函数   2=PWM端口测试
         /// </summary>
         [DataMember]
         public int MsgType { get; set; }
