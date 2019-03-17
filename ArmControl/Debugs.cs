@@ -95,7 +95,7 @@ namespace ArmControl
             c.Ids = new int[] { num };
             c.Vals = new int[] { GetValuesByNum(num) };
 
-            string data =  TcpManager.Client(txtIP.Text, 12345, getJson(c));
+            string data =  TcpManager.Client(txtIP.Text, Convert.ToInt32(txtPort.Text), getJson(c));
             ExecuteResponse(data);
         }
         /// <summary>
@@ -203,7 +203,7 @@ namespace ArmControl
                                      Convert.ToInt32(dt.Rows[i]["col5"]),
                                      Convert.ToInt32(dt.Rows[i]["col6"])};
 
-                string data = TcpManager.Client(txtIP.Text, 12345, getJson(c));
+                string data = TcpManager.Client(txtIP.Text, Convert.ToInt32(txtPort.Text), getJson(c));
                 ExecuteResponse(data);
             }
             else if (e.ColumnIndex == 8)
@@ -241,7 +241,7 @@ namespace ArmControl
             c.MsgType = 1;//消息类型
             c.MethodType = cboMethod.SelectedIndex;
 
-            string data = TcpManager.Client(txtIP.Text, 12345, getJson(c));
+            string data = TcpManager.Client(txtIP.Text, Convert.ToInt32(txtPort.Text), getJson(c));
             ExecuteResponse(data);
         }
         /// <summary>
@@ -257,7 +257,7 @@ namespace ArmControl
             c.Ids = new int[] { Convert.ToInt32(txtPMWid.Value) };
             c.Vals = new int[] { Convert.ToInt32(txtPMWVal.Value) };
 
-            string data = TcpManager.Client(txtIP.Text, 12345, getJson(c));
+            string data = TcpManager.Client(txtIP.Text, Convert.ToInt32(txtPort.Text), getJson(c));
             ExecuteResponse(data);
         }
 
