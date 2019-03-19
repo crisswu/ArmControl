@@ -35,7 +35,7 @@ namespace ArmControl
         /// 0 = 初始化
         /// </summary>
         [DataMember]
-        public int MethodType { get; set; }
+        public string MethodName { get; set; }
 
     }
 }

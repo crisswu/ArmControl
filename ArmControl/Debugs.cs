@@ -20,6 +20,9 @@ namespace ArmControl
 
         DataTable dt;
 
+        //全部python代理类中函数
+        List<string> Methods = new List<string>() {"init"};
+
         private void Debugs_Load(object sender, EventArgs e)
         {
             cboMethod.SelectedIndex = 0;
@@ -239,8 +242,7 @@ namespace ArmControl
             Capm c = new Capm();
             c.ModelType = cboModel.SelectedIndex;//型号
             c.MsgType = 1;//消息类型
-            c.MethodType = cboMethod.SelectedIndex;
-
+            c.MethodName = Methods[cboMethod.SelectedIndex];
             string data = TcpManager.Client(txtIP.Text, Convert.ToInt32(txtPort.Text), getJson(c));
             ExecuteResponse(data);
         }
