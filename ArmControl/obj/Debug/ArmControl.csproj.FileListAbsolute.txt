@@ -14,3 +14,4 @@ D:\Criss\ArmControl\ArmControl\obj\Debug\ArmControl.Properties.Resources.resourc
 D:\Criss\ArmControl\ArmControl\obj\Debug\ArmControl.csproj.GenerateResource.Cache
 D:\Criss\ArmControl\ArmControl\obj\Debug\ArmControl.exe
 D:\Criss\ArmControl\ArmControl\obj\Debug\ArmControl.pdb
+E:\Appliction\ArmControl\ArmControl\obj\Debug\ArmControl.csprojAssemblyReference.cache

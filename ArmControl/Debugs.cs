@@ -18,13 +18,12 @@ namespace ArmControl
             InitializeComponent();
         }
 
-        DataTable dt;
-
         //全部python代理类中函数
-        List<string> Methods = new List<string>() {"init"};
-
+        List<string> Methods = new List<string>() {"init", "ExecuteClamp" };
+        DataTable dt;
         private void Debugs_Load(object sender, EventArgs e)
         {
+
             cboMethod.SelectedIndex = 0;
             grd.AutoGenerateColumns = false;
             cboModel.SelectedIndex = 0;
@@ -37,6 +36,7 @@ namespace ArmControl
             dt.Columns.Add("col4", Type.GetType("System.Int32"));
             dt.Columns.Add("col5", Type.GetType("System.Int32"));
             dt.Columns.Add("col6", Type.GetType("System.Int32"));
+            dt.Columns.Add("col7", Type.GetType("System.Int32"));
             dt.Columns.Add("btnExecute", Type.GetType("System.String"));
             dt.Columns.Add("btnDel", Type.GetType("System.String"));
             dt.Columns.Add("colSort", Type.GetType("System.String"));
@@ -79,8 +79,12 @@ namespace ArmControl
                     return Convert.ToInt32(txtDJ4.Value);
                 case 5:
                     return Convert.ToInt32(txtDJ5.Value);
-                default:
+                case 6:
                     return Convert.ToInt32(txtDJ6.Value);
+                case 7:
+                    return Convert.ToInt32(txtDJ7.Value);
+                default:
+                    return Convert.ToInt32(txtDJ8.Value);
             }
         }
         /// <summary>
@@ -116,6 +120,7 @@ namespace ArmControl
             dr["col4"] = txtDJ4.Value;
             dr["col5"] = txtDJ5.Value;
             dr["col6"] = txtDJ6.Value;
+            dr["col7"] = txtDJ7.Value;
             dr["btnExecute"] = "执行";
             dr["btnDel"] = "删除";
             dr["colSort"] = "↑";
@@ -154,7 +159,15 @@ namespace ArmControl
                             txtDJ5.Value = rm.Vals[i];
                         if (rm.Ids[i] == 6)
                             txtDJ6.Value = rm.Vals[i];
+                        if (rm.Ids[i] == 7)
+                            txtDJ7.Value = rm.Vals[i];
+                        if (rm.Ids[i] == 8)
+                            txtDJ8.Value = rm.Vals[i];
                     }
+                }
+                else if (rm.Code == "108")// 返回雷达信息
+                {
+                    txtLD.Text = rm.Msg;
                 }
                 else if (rm.Code == "201")// 自定义内容
                 {
@@ -190,32 +203,33 @@ namespace ArmControl
         /// <param name="e"></param>
         private void grd_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 8)
             {
                 int i = e.RowIndex;
                 //执行
                 Capm c = new Capm();
                 c.ModelType = cboModel.SelectedIndex;//型号
                 c.MsgType = 0;//消息类型
-                c.Ids = new int[] { 1, 2, 3, 4, 5, 6 };
+                c.Ids = new int[] { 1, 2, 3, 4, 5, 6,7 };
 
                 c.Vals = new int[] { Convert.ToInt32(dt.Rows[i]["col1"]),
                                      Convert.ToInt32(dt.Rows[i]["col2"]),
                                      Convert.ToInt32(dt.Rows[i]["col3"]),
                                      Convert.ToInt32(dt.Rows[i]["col4"]),
                                      Convert.ToInt32(dt.Rows[i]["col5"]),
-                                     Convert.ToInt32(dt.Rows[i]["col6"])};
+                                     Convert.ToInt32(dt.Rows[i]["col6"]),
+                                     Convert.ToInt32(dt.Rows[i]["col7"])};
 
                 string data = TcpManager.Client(txtIP.Text, Convert.ToInt32(txtPort.Text), getJson(c));
                 ExecuteResponse(data);
             }
-            else if (e.ColumnIndex == 8)
+            else if (e.ColumnIndex == 9)
             {
                 //删除
                 dt.Rows.RemoveAt(e.RowIndex);
                 grd.DataSource = dt;
             }
-            else if (e.ColumnIndex == 9)
+            else if (e.ColumnIndex == 10)
             {
                 if (e.RowIndex != 0)
                 {
@@ -239,6 +253,7 @@ namespace ArmControl
         /// <param name="e"></param>
         private void btnMethod_Click(object sender, EventArgs e)
         {
+
             Capm c = new Capm();
             c.ModelType = cboModel.SelectedIndex;//型号
             c.MsgType = 1;//消息类型
@@ -271,6 +286,43 @@ namespace ArmControl
         private void btnExcuteDZ_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //发送雷达
+        private void btnLD_Click(object sender, EventArgs e)
+        {
+            Capm c = new Capm();
+            c.ModelType = cboModel.SelectedIndex;//型号
+            c.MsgType = 3;//消息类型
+
+            string data = TcpManager.Client(txtIP.Text, Convert.ToInt32(txtPort.Text), getJson(c));
+            ExecuteResponse(data);
+        }
+
+        private void btnSom_Click(object sender, EventArgs e)
+        {
+            int num = Convert.ToInt32(((Button)sender).Tag);//机号位
+
+            string[] sp = txtsome.Text.Split(',');
+            
+            Capm c = new Capm();
+            c.ModelType = cboModel.SelectedIndex;//型号
+            c.MsgType = 0;//消息类型
+            c.Ids = new int[] { 1,2,3,4,5,6,7 };
+            c.Vals = ConvertIntByString(sp);
+
+            string data = TcpManager.Client(txtIP.Text, Convert.ToInt32(txtPort.Text), getJson(c));
+            ExecuteResponse(data);
+        }
+
+        public int[] ConvertIntByString(string[] str)
+        {
+            int[] all = new int[str.Length];
+            for (int i = 0; i < str.Length; i++)
+            {
+                all[i] = Convert.ToInt32(str[i]);
+            }
+            return all;
         }
     }
 }
